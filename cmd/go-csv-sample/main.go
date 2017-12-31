@@ -1,18 +1,11 @@
 package main
 
 import (
-	// "encoding/csv"
 	"flag"
-	// "fmt"
-	// "io"
 	"log"
 	"os"
 )
 
-import (
-// "golang.org/x/text/encoding/japanese"
-// "golang.org/x/text/transform"
-)
 
 import "github.com/kflange/go-csv-sample"
 

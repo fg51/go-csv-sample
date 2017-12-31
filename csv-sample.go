@@ -7,18 +7,23 @@ import (
 	"log"
 )
 
+import (
+	"golang.org/x/text/encoding/japanese"
+	"golang.org/x/text/transform"
+)
+
 func CreateReadCSV(finn io.Reader) *csv.Reader {
-	reader := csv.NewReader(finn) // utf-8
-	// reader := csv.NewReader(transform.NewReader(finn, japanese.ShiftJIS.NewDecoder()))
+	// reader := csv.NewReader(finn) // utf-8
+	reader := csv.NewReader(transform.NewReader(finn, japanese.ShiftJIS.NewDecoder()))
 	// reader := csv.NewReader(transform.NewReader(finn, japanese.EUCJP.NewDecoder()))
 	reader.LazyQuotes = true
 	return reader
 }
 
 func CreateWriteCSV(fout io.Writer) *csv.Writer {
-	writer := csv.NewWriter(fout) // utf-8
-	// writer := csv.NewWriter(transform.NewReader(fout, japanese.ShiftJIS.NewDecoder()))
-	// writer := csv.NewWriter(transform.NewReader(fout, japanese.EUCJP.NewDecoder()))
+	// writer := csv.NewWriter(fout) // utf-8
+	writer := csv.NewWriter(transform.NewWriter(fout, japanese.ShiftJIS.NewDecoder()))
+	// writer := csv.NewWriter(transform.NewWriter(fout, japanese.EUCJP.NewDecoder()))
 	writer.UseCRLF = true
 	// writer.Comma = '\t'
 	return writer
