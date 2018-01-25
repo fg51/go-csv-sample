@@ -6,7 +6,6 @@ import (
 	"os"
 )
 
-
 import "github.com/kflange/go-csv-sample"
 
 func failOnError(err error) {
@@ -28,7 +27,8 @@ func main() {
 	}
 	defer fout.Close()
 
-	csvsample.Src_to_out(
+	csvsample.SrcToOut(
 		csvsample.CreateReadCSV(finn),
-		csvsample.CreateWriteCSV(fout))
+		csvsample.CreateWriteCSV(fout),
+	)
 }
