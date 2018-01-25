@@ -12,11 +12,14 @@ import (
 	"golang.org/x/text/transform"
 )
 
+var reader *csv.Reader
+var writer *csv.Writer
+
 // CreateReadCSV is reading csv text.
 func CreateReadCSV(finn io.Reader) *csv.Reader {
-	// reader := csv.NewReader(finn) // utf-8
-	reader := csv.NewReader(transform.NewReader(finn, japanese.ShiftJIS.NewDecoder()))
-	// reader := csv.NewReader(transform.NewReader(finn, japanese.EUCJP.NewDecoder()))
+	// reader = csv.NewReader(finn) // utf-8
+	reader = csv.NewReader(transform.NewReader(finn, japanese.ShiftJIS.NewDecoder()))
+	// reader = csv.NewReader(transform.NewReader(finn, japanese.EUCJP.NewDecoder()))
 	reader.LazyQuotes = true
 	return reader
 }
